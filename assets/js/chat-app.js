@@ -94,10 +94,12 @@ class Chatbox {
         }
         if(cookieExists('session_id')){
             var session_id = getCookie('session_id')
+            console.log("Old session")
         }
         else{
             var session_id = getMachineId()
             setCookie('session_id',session_id,1)
+            console.log("New Session")
         }
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
