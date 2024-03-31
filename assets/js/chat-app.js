@@ -139,8 +139,9 @@ class Chatbox {
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
+        chatbox.querySelector('input').disabled = false;
         document.querySelector('.send__button').disabled = false;
-        textField.disabled = false;
+       
 
     }
 }
