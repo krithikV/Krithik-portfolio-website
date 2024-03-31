@@ -126,6 +126,9 @@ class Chatbox {
 
     updateChatText(chatbox) {
         var html = '';
+
+        
+        
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Sam")
             {
@@ -133,7 +136,17 @@ class Chatbox {
             }
             else
             {
-                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
+                var chat_msg = item.message
+                if (chat_msg.includes("Krithik:")) {
+                    chat_msg = item.message.replace("Krithik:", "");
+                }
+                if (chat_msg.includes("note:")) {
+                    chat_msg = originalString.split("note:")[0];
+                }
+                if (chat_msg.includes("Note:")) {
+                    chat_msg = originalString.split("Note:")[0];
+                }
+                html += '<div class="messages__item messages__item--operator">' + chat_msg + '</div>'
             }
           });
 
@@ -141,7 +154,6 @@ class Chatbox {
         chatmessage.innerHTML = html;
         chatbox.querySelector('input').disabled = false;
         document.querySelector('.send__button').disabled = false;
-       
 
     }
 }
