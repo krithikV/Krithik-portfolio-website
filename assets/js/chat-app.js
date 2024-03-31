@@ -132,21 +132,25 @@ class Chatbox {
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Sam")
             {
-                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
+                var chat_msg = String(item.message)
+                console.log(chat_msg)
+                if (chat_msg.includes("Krithik:")) {
+                    console.log("Krithik")
+                    chat_msg = item.message.split("Krithik:")[1];
+                }
+                if (chat_msg.includes("note:")) {
+                    chat_msg = item.message.split("note:")[0];
+                }
+                if (chat_msg.includes("Note:")) {
+                    chat_msg = item.message.split("Note:")[0];
+                }
+                console.log(chat_msg)
+                html += '<div class="messages__item messages__item--visitor">' + chat_msg + '</div>'
             }
             else
             {
-                var chat_msg = item.message
-                if (chat_msg.includes("Krithik:")) {
-                    chat_msg = item.message.replace("Krithik:", "");
-                }
-                if (chat_msg.includes("note:")) {
-                    chat_msg = originalString.split("note:")[0];
-                }
-                if (chat_msg.includes("Note:")) {
-                    chat_msg = originalString.split("Note:")[0];
-                }
-                html += '<div class="messages__item messages__item--operator">' + chat_msg + '</div>'
+             
+                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
             }
           });
 
