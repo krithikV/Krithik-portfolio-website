@@ -87,6 +87,7 @@ class Chatbox {
         var textField = chatbox.querySelector('input');
         let text1 = textField.value
         document.querySelector('.send__button').disabled = true;
+        textField.disabled = true;
 
         if (text1 === "") {
             return;
@@ -139,6 +140,8 @@ class Chatbox {
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
         document.querySelector('.send__button').disabled = false;
+        textField.disabled = false;
+
     }
 }
 
