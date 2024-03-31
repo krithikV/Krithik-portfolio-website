@@ -146,6 +146,12 @@ class Chatbox {
                 if (chat_msg.includes("Note:")) {
                     chat_msg = item.message.split("Note:")[0];
                 }
+                if (chat_msg.includes("Reminder:")){
+                    chat_msg = item.message.split("Note:")[0];
+                }
+                if (chat_msg.includes("reminder:")){
+                    chat_msg = item.message.split("Note:")[0];
+                }
                 console.log(chat_msg)
                 html += '<div class="messages__item messages__item--visitor">' + chat_msg + '</div>'
             }
