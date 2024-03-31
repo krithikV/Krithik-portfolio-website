@@ -92,10 +92,10 @@ class Chatbox {
             return;
         }
         if(cookieExists('session_id')){
-            let session_id = getCookie('session_id')
+            var session_id = getCookie('session_id')
         }
         else{
-            let session_id = getMachineId()
+            var session_id = getMachineId()
             setCookie('session_id',session_id,1)
         }
         let msg1 = { name: "User", message: text1 }
