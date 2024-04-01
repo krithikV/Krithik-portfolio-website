@@ -1,3 +1,24 @@
+var cityName;
+async function getCityName() {
+    try {
+      const response = await fetch('https://ipinfo.io/json');
+      const data = await response.json();
+      return data.city;
+    } catch (error) {
+      console.error('Error fetching IP information:', error);
+      return null;
+    }
+  }
+  
+  window.onload = async function() {
+    const cityName = await getCityName();
+    if (cityName) {
+      console.log('City:', cityName);
+    } else {
+      console.log('City name could not be fetched.');
+    }
+  }
+
 function getMachineId() {
     
     let machineId = localStorage.getItem('MachineId');
@@ -9,6 +30,7 @@ function getMachineId() {
 
     return machineId;
 }
+
 
 function setCookie(name,value,days) {
     var expires = "";
@@ -83,7 +105,7 @@ class Chatbox {
         }
     }
 
-    onSendButton(chatbox) {
+    async onSendButton(chatbox) {
         var textField = chatbox.querySelector('input');
         let text1 = textField.value
         document.querySelector('.send__button').disabled = true;
@@ -103,10 +125,10 @@ class Chatbox {
         }
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
-
-        fetch('https://krithikmyava.pythonanywhere.com/predict', {
+        
+        fetch('http://127.0.0.1:5000/predict', {
             method: 'POST',
-            body: JSON.stringify({ message: text1 , session_id: session_id}),
+            body: JSON.stringify({ message: text1 , session_id: session_id,city:await getCityName()}),
             mode: 'cors',
             headers: {
               'Content-Type': 'application/json'
